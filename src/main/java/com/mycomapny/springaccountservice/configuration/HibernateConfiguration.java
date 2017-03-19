@@ -17,6 +17,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.jndi.JndiObjectFactoryBean;
  
 @Configuration
 @EnableTransactionManagement
@@ -30,6 +31,9 @@ public class HibernateConfiguration {
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
+       // JndiObjectFactoryBean testJndi = new JndiObjectFactoryBean();
+        //testJndi.setProxyInterface(DataSource.class);
+        //sessionFactory.setDataSource((DataSource)(testJndi));;
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setPackagesToScan(new String[] { "com.mycomapny.springaccountservice.model" });
         sessionFactory.setHibernateProperties(hibernateProperties());
